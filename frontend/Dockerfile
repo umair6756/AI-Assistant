@@ -2,7 +2,7 @@
 
 # Build step
 FROM node:18-alpine as builder
-WORKDIR /app
+WORKDIR /AI-Assistant
 
 COPY package.json package-lock.json ./
 RUN npm install
@@ -14,7 +14,7 @@ RUN npm run build
 FROM node:18-alpine
 WORKDIR /app
 
-COPY --from=builder /app .
+COPY --from=builder /AI-Assistant .
 
 EXPOSE 3000
 CMD ["npm", "start"]
